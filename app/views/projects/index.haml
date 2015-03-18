@@ -1,0 +1,15 @@
+.container
+  %h1 Your Projects
+  %ul.list-group
+    - @projects.each do |project|
+      %li.list-group-item
+        = link_to project.name, project_path(project), class: "project-name"
+        .btn-group.pull-right
+          %a{ href: "#", id: "show-form", class: "btn btn-primary btn-xs show-form" } Change name
+          = link_to "Delete Project", project_path(project), method: :delete, class: "btn btn-primary btn-xs"
+        .edit-project-form
+          = render 'form', project: project
+
+
+
+
