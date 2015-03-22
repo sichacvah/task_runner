@@ -1,0 +1,16 @@
+.container
+  %h1 Login
+  %p= flash[:notice]
+  %p= flash[:alert]
+
+  = form_tag sessions_path, class: "form-horizontal", method: :post do
+    %fieldset 
+      .form-group
+        .col-lg-12
+          %label.control-label Email
+          = text_field_tag :email ,"", class: "form-control"
+          %label.control-label=  :password
+          = password_field_tag :password ,"", class: "form-control"
+          %br/
+        .col-lg-12
+          = submit_tag :login, class: "btn btn-default"

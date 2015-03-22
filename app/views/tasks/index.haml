@@ -1,0 +1,56 @@
+.cotainer
+  .row
+    .col-xs-12
+      %h1.text-center= "#{@project.name.capitalize} tasks"
+  %table.table.table-bordered
+    %thead
+      %tr
+        %td.col-xs-15
+          %h3 Begined
+        %td.col-xs-15
+          %h3 Sent for review
+        %td.col-xs-15
+          %h3 Sent back
+        %td.col-xs-15
+          %h3 Accepted
+        %td.col-xs-15
+          %h3 Complete
+    %tbody
+      - @tasks.each do |task|
+        %tr
+          %td.begin
+            -if task.aasm_state == "begin"
+              .panel.panel-default
+                .panel-heading= task.title
+                .panel-body
+                  %p= "Estimate date: #{task.estimate.strftime("%Y/%m/%d")}"
+                  %p= link_to "Send for review", new_state_project_task_path(@project, task), class: "btn btn-default btn-xs change-state", "data-id" => task.id
+          %td.sent_for_review
+            -if task.aasm_state == "sent_for_review"
+              .panel.panel-info
+                .panel-heading= task.title
+                .panel-body
+                  %p= "Estimate date: #{task.estimate.strftime("%Y/%m/%d")}"
+                  %p
+                    = link_to "Accept", new_state_project_task_path(@project, task), class: "btn btn-default btn-xs change-state", "data-id" => task.id
+                    = link_to "Send back", previos_state_project_task_path(@project, task), class: "btn btn-default btn-xs change-state", "data-id" => task.id
+          %td.sent_back_for_revision
+            -if task.aasm_state == "sent_back_for_revision"
+              .panel.panel-danger
+                .panel-heading= task.title
+                .panel-body
+                  %p= "Estimate date: #{task.estimate.strftime("%Y/%m/%d")}"
+                  %p= link_to "Send for review", new_state_project_task_path(@project, task), class: "btn btn-default btn-xs change-state", "data-id" => task.id
+          %td.accepted
+            -if task.aasm_state == "accepted"
+              .panel.panel-success
+                .panel-heading= task.title
+                .panel-body
+                  %p= "Estimate date: #{task.estimate.strftime("%Y/%m/%d")}"
+                  %p= link_to "End up", new_state_project_task_path(@project, task), class: "btn btn-default btn-xs change-state ", "data-id" => task.id
+          %td.complete
+            -if task.aasm_state == "complete"
+              .panel.panel-primary
+                .panel-heading= task.title
+                .panel-body
+                  %p= "Estimate date: #{task.estimate.strftime("%Y/%m/%d")}"

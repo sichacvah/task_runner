@@ -1,37 +1,35 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, except: [:index, :new, :create]
+  before_action :set_project, except: [:index,:new, :create]
 
   def index
-    @projects = Project.all
+    @projects = current_user.projects.all
   end
 
-  def show
+  def edit
+    @users = User.all
   end
+
 
   def new
     @project = Project.new
+    @users = User.all
   end
 
   def create
     @project = Project.new(project_params)
     if @project.save
-      redirect_to @project, notice: "Project succefully created"
+      redirect_to project_tasks_path(@project), notice: "Project succefully created"
     else
       render :new
     end
-  end
-
-  def edit
   end
 
   def update
     respond_to do |format|
       if @project.update_attributes(project_params)
         format.html { redirect_to project_path, notice: "change Added" }
-        format.json { render json: @project, only: :name }
       else
         format.html { render :edit }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,10 +42,14 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name)
+    params.require(:project).permit(:name, :user_ids)
   end
 
   def set_project
-    @project = Project.find(params[:id])
+    if current_user.admin?
+      @project = Project.find(params[:id])
+    else
+      @project = current_user.projects.find(params[:id])
+    end
   end
 end

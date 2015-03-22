@@ -1,3 +1,11 @@
-= form_for( project, html: { class: "horizontal-form" }) do |f|
-  = f.text_field :name, class: "name_field"
-  = f.submit
+= form_for( project, html: { class: "horizontal-form change-name-form" }) do |f|
+  .field
+    = f.label :name
+    = f.text_field :name
+  .filed
+    - users.each do |user|
+      = check_box_tag "project[user_ids][]", user.id, project.user_ids.include?(user.id)
+      = user.email
+      %br/
+  .actions
+    = f.submit

@@ -18,7 +18,17 @@ gem 'turbolinks'
 
 gem 'jbuilder', '~> 2.0'
 
+gem 'aasm'
+
 gem 'sdoc', '~> 0.4.0', group: :doc
+
+gem 'sorcery'
+
+gem 'rolify'
+
+gem 'simple_form'
+
+gem 'cancancan'
 
 group :development, :test do
 

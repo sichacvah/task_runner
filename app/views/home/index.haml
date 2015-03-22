@@ -1,0 +1,9 @@
+.container
+  - flash.each do |name, msg|
+    = content_tag :div, msg, class: "alert alert-#{name}"
+  .jumbotron
+    %h1 Task Runner
+    %p Watch your's projects
+  %p.text-center
+    = link_to "Sign Up", new_registration_path, class: 'btn btn-large btn-success'
+    = link_to "Sign in", login_path, class: 'btn btn-large btn-primary'
