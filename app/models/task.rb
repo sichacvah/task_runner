@@ -1,6 +1,8 @@
 class Task < ActiveRecord::Base
   belongs_to :project
-  validates :title, :estimate, presence: true
+  belongs_to :user
+  validates :title, :estimate, :user, presence: true
+  acts_as_taggable
 
   include AASM
 

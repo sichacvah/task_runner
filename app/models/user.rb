@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
 
   authenticates_with_sorcery!
 
-
   def assign_default_role
     add_role :user
   end

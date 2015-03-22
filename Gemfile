@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.0'
 
+gem 'acts-as-taggable-on'
+
 gem 'pg'
 
 gem 'haml'
@@ -26,9 +28,11 @@ gem 'sorcery'
 
 gem 'rolify'
 
-gem 'simple_form'
-
 gem 'cancancan'
+
+gem 'activeadmin', github: 'gregbell/active_admin'
+
+gem 'simple_form'
 
 group :development, :test do
 
