@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
   has_many :tasks, dependent: :destroy
   has_and_belongs_to_many :projects, join_table: :users_projects
 
-
   validates :password, presence: true,
                        confirmation: true,
                        length: { minimum: 3 },
@@ -15,7 +14,6 @@ class User < ActiveRecord::Base
   validates :password_confirmation,presence: true,
                                    on: [:create, :update],
                                    allow_nil: true
-
 
   authenticates_with_sorcery!
 

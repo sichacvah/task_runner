@@ -22,7 +22,8 @@ class Task < ActiveRecord::Base
     end
 
     event :accept do
-      transitions from: [:sent_for_review, :sent_back_for_revision], to: :accepted
+      transitions from: [:sent_for_review, :sent_back_for_revision],
+                  to: :accepted
     end
 
     event :end_up do
