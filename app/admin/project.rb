@@ -29,6 +29,7 @@ ActiveAdmin.register Project do
     def new
       @project = Project.new
     end
+    
     def create
       @project = Project.new
       @project.name = params[:project][:name]
@@ -43,6 +44,7 @@ ActiveAdmin.register Project do
         render "new"
       end
     end
+
     def update
       project = Project.find(params[:id])
       project.users.delete_all

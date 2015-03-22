@@ -14,7 +14,7 @@ class RegistrationController < ApplicationController
       auto_login(@user)
       redirect_to projects_path
     else
-      render 'new'
+      render "new"
     end
   end
 
