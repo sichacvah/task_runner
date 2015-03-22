@@ -1,5 +1,5 @@
 ActiveAdmin.register Project do
-  permit_params :name, user_attributes:[:id, :email],user_ids: [:id]
+  permit_params :name, user_attributes: [:id, :email], user_ids: [:id]
 
   index do
     selectable_column
@@ -24,7 +24,6 @@ ActiveAdmin.register Project do
       end
     end
   end
-
 
   controller do
     def new
@@ -55,7 +54,7 @@ ActiveAdmin.register Project do
       if project.update_attributes(name: params[:project][:name])
         redirect_to resource_path(project)
       else
-        render 'edit'
+        render "edit"
       end
     end
   end
