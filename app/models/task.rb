@@ -6,7 +6,7 @@ class Task < ActiveRecord::Base
 
   include AASM
 
-  aasm :skip_validation_on_save => true do
+  aasm skip_validation_on_save: true do
     state :begin, initial: true
     state :sent_for_review
     state :sent_back_for_revision
@@ -31,7 +31,7 @@ class Task < ActiveRecord::Base
   end
 
   def send_forward
-    case self.aasm_state
+    case aasm_state
     when "begin" then self.send_for_review!
     when "sent_for_review" then self.accept!
     when "sent_back_for_revision" then self.send_for_review!
