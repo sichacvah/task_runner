@@ -11,9 +11,9 @@ class User < ActiveRecord::Base
                        on: [:create, :update],
                        allow_nil: true
   validates :email, presence: true, uniqueness: true
-  validates :password_confirmation,presence: true,
-                                   on: [:create, :update],
-                                   allow_nil: true
+  validates :password_confirmation, presence: true,
+                                    on: [:create, :update],
+                                    allow_nil: true
 
   authenticates_with_sorcery!
 

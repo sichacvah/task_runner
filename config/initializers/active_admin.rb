@@ -4,7 +4,7 @@ ActiveAdmin.setup do |config|
   config.authentication_method = :authenticate_admin!
 
   def authenticate_admin!
-   redirect_to root_path unless current_user.admin?
+    redirect_to root_path unless current_user.admin?
   end
 
   config.logout_link_path = :destroy_admin_user_session_path
