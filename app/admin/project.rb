@@ -29,7 +29,7 @@ ActiveAdmin.register Project do
     def new
       @project = Project.new
     end
-    
+
     def create
       @project = Project.new
       @project.name = params[:project][:name]
