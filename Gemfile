@@ -28,8 +28,6 @@ gem 'sorcery'
 
 gem 'rolify'
 
-gem 'cancancan'
-
 gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'simple_form'
