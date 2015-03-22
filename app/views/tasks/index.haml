@@ -1,0 +1,47 @@
+.container
+  .col-xs-12
+    %h1
+      = "#{@project.name.capitalize} tasks"
+      %span.pull-right
+        = link_to "Add task", new_project_task_path, class: "btn btn-primary btn-md"
+    %br/
+    .tag_cloud
+      - tag_cloud @tasks.tag_counts, %w[s m l] do |tag, css_class|
+        = link_to tag.name, project_tag_path(@project, tag.name), class: css_class
+    %br/
+  %table.table.table-bordered
+    %thead
+      %tr
+        %td.col-xs-15
+          %h3 Begined
+        %td.col-xs-15
+          %h3 Sent for review
+        %td.col-xs-15
+          %h3 Sent back
+        %td.col-xs-15
+          %h3 Accepted
+        %td.col-xs-15
+          %h3 Complete
+    %tbody
+      - @tasks.each do |task|
+        %tr{id: task.id}
+          %td.begin
+            -if task.aasm_state == "begin"
+              .panel.panel-default
+                = render 'task', task: task, users: @project.users
+          %td.sent_for_review
+            -if task.aasm_state == "sent_for_review"
+              .panel.panel-info
+                = render 'task', task: task, users: @project.users
+          %td.sent_back_for_revision
+            -if task.aasm_state == "sent_back_for_revision"
+              .panel.panel-danger
+                = render 'task', task: task, users: @project.users
+          %td.accepted
+            -if task.aasm_state == "accepted"
+              .panel.panel-success
+                = render 'task', task: task, users: @project.users
+          %td.complete
+            -if task.aasm_state == "complete"
+              .panel.panel-primary
+                = render 'task', task: task, users: @project.users

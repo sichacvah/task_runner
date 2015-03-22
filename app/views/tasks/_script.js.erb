@@ -1,0 +1,10 @@
+state_panel_requirement = {
+  begin: 'panel-default',
+  sent_for_review: 'panel-info',
+  sent_back_for_revision: 'panel-danger',
+  accepted: 'panel-success',
+  complete: 'panel-primary'
+}
+$('#' + '<%= (@task.id)%>').find("td").empty()
+panel = $("<div>",{ class: "panel " + state_panel_requirement["<%= j(@task.aasm_state) %>"]}).append("<%= j(render 'task', task: @task, users: @project.users) %>")
+$('#' + '<%= (@task.id)%>').find("." + "<%= (@task.aasm_state) %>").append(panel)

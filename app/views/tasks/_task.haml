@@ -1,0 +1,16 @@
+.panel-heading
+  = task.title
+  - if current_user.id == task.user_id
+    %span.pull-right
+      = link_to "Edit", edit_project_task_path(@project, task), class: "btn btn-primary btn-xs"
+      = link_to "Delete", project_task_path(@project, task), method: :delete, class: "btn btn-danger btn-xs"
+.panel-body
+  %p
+    Tags: 
+    = raw task.tag_list.map { |t| link_to t, project_tag_path(@project, t)}.join(", ")
+
+  %p= "Estimate date: #{task.estimate.strftime("%Y/%m/%d")}"
+  %p= "Performer: #{users.find(task.performer_id).email}"
+  %p= "Task given by: #{users.find(task.user).email}"
+  - if task.user_id == current_user.id || task.user_id == task.performer_id
+    = render 'controls', task: task

@@ -1,0 +1,11 @@
+- case task.aasm_state
+- when "begin"
+  %p= link_to "Send for review", new_state_project_task_path(@project, task), class: "btn btn-default btn-xs change-state", "data-id" => task.id, method: :post, remote: true
+- when "sent_for_review"
+  %p
+    = link_to "Accept", new_state_project_task_path(@project, task), class: "btn btn-default btn-xs change-state", "data-id" => task.id, method: :post, remote: true
+    = link_to "Send back", previos_state_project_task_path(@project, task), class: "btn btn-default btn-xs change-state", "data-id" => task.id, method: :post, remote: true
+- when "sent_back_for_revision"
+  %p= link_to "Send for review", new_state_project_task_path(@project, task), class: "btn btn-default btn-xs change-state", "data-id" => task.id, method: :post, remote: true
+- when "accepted"
+  %p= link_to "End up", new_state_project_task_path(@project, task), class: "btn btn-default btn-xs change-state ", "data-id" => task.id, method: :post, remote: true
