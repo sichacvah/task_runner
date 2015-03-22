@@ -1,0 +1,1 @@
+[![Code Climate](https://codeclimate.com/github/sichacvah/task_runner/badges/gpa.svg)](https://codeclimate.com/github/sichacvah/task_runner)

@@ -7,7 +7,7 @@
     %br/
     .tag_cloud
       - tag_cloud @tasks.tag_counts, %w[s m l] do |tag, css_class|
-        = link_to tag.name, project_tag_path(@project, tag), class: css_class
+        = link_to tag.name, project_tag_path(@project, tag.name), class: css_class
     %br/
   %table.table.table-bordered
     %thead
